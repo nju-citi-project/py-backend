@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "citi-project"
+version = "0.1.0"
+description = ""
+authors = ["fogsong233 <fogsong233@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = {extras = ["standard"], version = "^0.115.8"}
+uvicorn = "^0.34.0"
+web3 = "^7.8.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

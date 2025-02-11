@@ -1,0 +1,28 @@
+# Python 通用忽略项
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Poetry 相关
+.poetry/
+
+# 虚拟环境（如果没有使用 Poetry 的内置虚拟环境）
+.env
+.venv/
+
+# Poetry 生成的 lock 文件（一般情况下应该提交 `poetry.lock`，但如果不想提交可以忽略）
+# poetry.lock
+
+# 编辑器和 IDE 配置文件
+.vscode/
+.idea/
+*.iml
+
+# 日志文件
+logs/
+*.log
+
+# 操作系统生成的文件
+.DS_Store
+Thumbs.db
