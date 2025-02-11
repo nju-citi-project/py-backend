@@ -6,5 +6,4 @@ if __name__ == "__main__":
 
     # 以太坊连接成功
     connect()
-    create_msg_box("0x0230A49a8E2FDFDDfADE030A2AE43967E3814Dda")
     uvicorn.run(app, port=3030)
