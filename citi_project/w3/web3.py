@@ -234,3 +234,29 @@ def add_msg(account_address: str, msg: MsgModel):
     tx_hash = w3.eth.send_raw_transaction(sign_tx.raw_transaction)
     w3.eth.wait_for_transaction_receipt(tx_hash)
     print("addMsg成功: Tx Hash:", tx_hash.hex())
+
+
+@require_init
+def mark_msg_as_deleted(account_address: str, msg_index: int):
+
+    msg_box_contract = get_msg_box_contract(get_msg_box_address(account_address))
+    gas_estimate = msg_box_contract.functions.markMsgAsDeleted(msg_index).estimate_gas(
+        {
+            "from": py_account.address,
+            "nonce": w3.eth.get_transaction_count(py_account.address),
+            "gasPrice": w3.to_wei("10", "gwei"),
+        }
+    )
+    tx = msg_box_contract.functions.markMsgAsDeleted(msg_index).build_transaction(
+        {
+            "from": py_account.address,
+            "nonce": w3.eth.get_transaction_count(py_account.address),
+            "gas": gas_estimate,
+            "gasPrice": w3.to_wei("10", "gwei"),
+        }
+    )
+
+    sign_tx = py_account.sign_transaction(tx)
+    tx_hash = w3.eth.send_raw_transaction(sign_tx.raw_transaction)
+    w3.eth.wait_for_transaction_receipt(tx_hash)
+    print("markDelete成功: Tx Hash:", tx_hash.hex())

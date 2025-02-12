@@ -7,7 +7,7 @@ def result_wrapper(
     return JSONResponse(status_code=code, content={"code": code, "data": data})
 
 
-def ok_wrapper(data: dict[str, str | dict]):
+def ok_wrapper(data: dict[str, str | dict] = {"msg": "ok"}):
     return result_wrapper(data=data, code=200)
 
 

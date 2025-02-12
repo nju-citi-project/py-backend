@@ -5,4 +5,5 @@ from .web3 import (
     get_msg_box_address,
     get_msg_list,
     add_msg,
+    mark_msg_as_deleted,
 )

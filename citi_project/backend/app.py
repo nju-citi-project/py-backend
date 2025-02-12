@@ -1,8 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from citi_project.backend.model import AddressModel, MsgModel
-from citi_project.w3.web3 import get_msg_list, add_msg as w3_add_msg
+from citi_project.backend.model import AddressModel, DelMsgModel, MsgModel
+from citi_project.w3.web3 import (
+    get_msg_list,
+    add_msg as w3_add_msg,
+    mark_msg_as_deleted,
+)
 
 from .util import ok_wrapper
 
@@ -48,4 +52,10 @@ async def msg_list(data: AddressModel):
 @app.post(f"{CONTRACT_API_PATH}/add-msg")
 async def add_msg(address: AddressModel, msg: MsgModel):
     w3_add_msg(address.address, msg=msg)
-    return ok_wrapper({"msg": "ok"})
+    return ok_wrapper()
+
+
+@app.post(f"{CONTRACT_API_PATH}/delete-msg")
+async def del_msg(data: DelMsgModel):
+    mark_msg_as_deleted(account_address=data.address, msg_index=data.index)
+    return ok_wrapper()

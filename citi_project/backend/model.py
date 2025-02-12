@@ -1,3 +1,4 @@
+from fastapi import Query
 from pydantic import BaseModel, Field
 
 
@@ -9,3 +10,7 @@ class MsgModel(BaseModel):
     info: str
     type: int
     deleted: bool = Field(default=False)
+
+
+class DelMsgModel(AddressModel):
+    index: int = Query(ge=0)
